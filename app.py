@@ -8,13 +8,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route('/')
 def home():
-    return render_template('home.html.django', title="Home | Epictools")
+    return render_template('home.html', title="Home | Epictools")
 
 
 @app.route('/tools', methods=['GET', 'POST'])
 @login_required
 def tools():
-    return render_template('tools.html.django', title="tools | Epictools")
+    return render_template('tools.html', title="tools | Epictools")
 
 @app.route('/logout')
 @login_required
@@ -52,7 +52,7 @@ def login():
             #return redirect(next)
         elif user is None:
             flash('User does not exist.')
-    return render_template('login.html.django', title="Login", form=form)
+    return render_template('login.html', title="Login", form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -72,7 +72,7 @@ def register():
             db.session.commit()
             flash('Thanks for registering! Now you can login!')
             return redirect(url_for('login'))
-    return render_template('register.html.django', title="Register", form=form)
+    return render_template('register.html', title="Register", form=form)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
