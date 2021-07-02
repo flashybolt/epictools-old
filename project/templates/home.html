@@ -1,0 +1,18 @@
+{% extends "base.html.django" %}
+{% block content %}
+<div>
+  <div class="home-slider">
+    <h1 class="home-about-header"></h1>
+    <h3 class="home-about-text"></h3>
+  </div>
+  {% if current_user.is_authenticated %}
+    <p>Hi {{ current_user.username }}!</p>
+  {% else %}
+    <p>Please login or register!</p>
+  {% endif %}
+</div>
+{% endblock %}
+{% block stylesheets_and_scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

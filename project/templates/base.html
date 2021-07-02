@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style>html{visibility: hidden;opacity:0;}</style>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% block stylesheets_and_scripts %}
+    {% endblock %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/fouc.css')}}">
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="nav-title">{{ title }}</div>
+      <div class="nav-content">
+        {% if not current_user.is_authenticated %}
+        <div class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Register</a></div>
+        <div class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Login</a></div>
+        {% elif current_user.is_authenticated %}
+        <div class="nav-item"><a class="nav-link" href="{{url_for('play')}}">Play</a></div>
+        <div class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></div>
+        {% endif %}
+        <div class="nav-item"><a class="nav-link" href="{{url_for('home')}}"><img src="{{ url_for('static', filename='img/homeIcon.gif') }}" class="icon"></a></div>
+        <div class="nav-dropdown">
+          <div class="nav-dropdown-item"><a class="nav-link">About</a></div>
+          <div class="nav-dropdown-item"><a class="nav-link">About</a></div>
+          <div class="nav-dropdown-item"><a class="nav-link">Terms of Service</a></div>
+          <div class="nav-dropdown-item"><a class="nav-link">Privacy Policy</a></div>
+          <div class="nav-dropdown-item"><a class="nav-link">Credits</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    
+  </body>
+</html>

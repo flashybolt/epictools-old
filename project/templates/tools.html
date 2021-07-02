@@ -1,0 +1,9 @@
+{% extends "base.html.django" %}
+{% block content %}
+<h1>Play Page</h1>
+<h2>You are {{current_user.username}}</h2>
+<a href="{{ url_for('home') }}">Back</a>
+{% endblock %}
+{% block stylesheets_and_scripts %}
+
+{% endblock %}
