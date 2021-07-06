@@ -1,3 +1,4 @@
+/*
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
 .bg {
@@ -70,7 +71,7 @@ span {
 	}
 }
 
-*/
+*/ /*
 
 .form {
   display:flex;
@@ -85,6 +86,7 @@ span {
 
 .form-heading {
   font-size:32px;
+  font-family:'Open Sans', sans-serif;
 }
 
 .input, .input:active {
@@ -125,6 +127,10 @@ span {
 .input:-ms-autofill:focus {
   box-shadow: 0px 0px 0px 1000px white inset;
   border:none;
+}
+
+.input:focus {
+  border:1px solid black;
 }
 
 .submit {
@@ -168,3 +174,8 @@ span {
 .link:hover {
   text-decoration:underline;
 }
+
+.form-flash {
+  color:black;
+}
+*/

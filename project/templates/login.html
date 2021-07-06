@@ -12,19 +12,25 @@
 <div class="form-wrapper">
   <div class="form-box">
     <h2 class="form-heading">Login</h2>
-    <form class="form" style="height:50%;">
+    <form class="form" style="height:50%;" novalidate>
       {# This hidden_tag is a CSRF security feature. #}
       {{ form.hidden_tag() }}
       {{ form.username(class="input", placeholder="Username", maxlength=100) }}
+      {% if form.errors %}
+        {% for error in form.username.errors %}{{ error }}{% endfor %}
+      {% else %}
+        {{form.errors}}
+      {% endif %}
       {{ form.password(class="input", placeholder="Password", maxlength=20) }}
       {{ form.submit(class="input submit") }}
-      {% for mess in get_flashed_messages() %}
-      {{ mess }}
-      {% endfor %}
     </form>
+    {% for mess in get_flashed_messages() %}
+    <div class="form-flash">
+      {{mess}}
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
 {% block stylesheets_and_scripts %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
 {% endblock %}

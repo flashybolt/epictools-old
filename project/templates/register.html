@@ -3,7 +3,7 @@
 <div class="form-wrapper">
   <div class="form-box">
     <h2 class="form-heading">Register</h2>
-    <form class="form">
+    <form class="form" novalidate>
         {# This hidden_tag is a CSRF security feature. #}
         {{ form.hidden_tag() }}
         {{ form.email(class="input", placeholder="Email") }}

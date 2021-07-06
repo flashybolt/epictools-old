@@ -2,9 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <style>html{visibility: hidden;opacity:0;}</style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     {% block stylesheets_and_scripts %}
     {% endblock %}
     <link rel="stylesheet" href="{{url_for('static', filename='css/fouc.css')}}">
@@ -13,8 +17,9 @@
   </head>
   <body>
     <div class="nav-bar">
-      <div class="nav-title">{{ title }}</div>
+      <span uk-icon="menu"></span>
       <div class="nav-content">
+        <div class="nav-title">{{ title }}</div>
         {% if not current_user.is_authenticated %}
         <div class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Register</a></div>
         <div class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Login</a></div>
@@ -36,6 +41,5 @@
       {% block content %}
       {% endblock %}
     </div>
-
   </body>
 </html>

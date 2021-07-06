@@ -1,5 +1,5 @@
 from project import app,db,templates
-from flask import render_template, redirect, request, url_for, flash,abort
+from flask import render_template, redirect, request, url_for, flash, abort
 from flask_login import login_user,login_required,logout_user
 from project.models import User
 from project.forms import LoginForm, RegistrationForm
@@ -28,10 +28,9 @@ def logout():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
+        flash('Hello!')
         # Grab the user from our User Models table
         user = User.query.filter_by(username=form.username.data).first()
-        print(user)
-        be_banana()
 
         # Check that the user was supplied and the password is right
         # The verify_password method comes from the User object
@@ -41,6 +40,7 @@ def login():
             #Log in the user
             login_user(user)
             flash('Logged in successfully.')
+            return redirect(url_for('tools'))
             # If a user was trying to visit a page that requires a login
             # flask saves that URL as 'next'.
             #next = request.args.get('next')
@@ -52,6 +52,10 @@ def login():
             #return redirect(next)
         elif user is None:
             flash('User does not exist.')
+            return redirect(url_for('login'))
+        elif not user.check_password(form.password.data):
+            flash('Your password is incorrect.')
+            return redirect(url_for('login'))
     return render_template('login.html', title="Login", form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
