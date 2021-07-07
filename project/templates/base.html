@@ -17,19 +17,18 @@
   </head>
   <body>
     <div class="nav-bar">
-      <span uk-icon="menu"></span>
+      <span uk-icon="icon: menu; ratio:1.5" id="menu-icon"></span>
       <div class="nav-content">
-        <div class="nav-title">{{ title }}</div>
+        <div class="uk-heading-small nav-title">Epictools</div>
         {% if not current_user.is_authenticated %}
-        <div class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Register</a></div>
-        <div class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Login</a></div>
+        <div class="nav-item uk-text-large"><a class="nav-link" href="{{url_for('register')}}">Register</a></div>
+        <div class="nav-item uk-text-large"><a class="nav-link" href="{{url_for('login')}}">Login</a></div>
         {% elif current_user.is_authenticated %}
-        <div class="nav-item"><a class="nav-link" href="{{url_for('play')}}">Play</a></div>
-        <div class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></div>
+        <div class="nav-item uk-text-large"><a class="nav-link" href="{{url_for('play')}}">Play</a></div>
+        <div class="nav-item uk-text-large"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></div>
         {% endif %}
-        <div class="nav-item"><a class="nav-link" href="{{url_for('home')}}"><img src="{{ url_for('static', filename='img/homeIcon.gif') }}" class="icon"></a></div>
+        <div class="nav-item uk-text-large"><a class="nav-link" href="{{url_for('home')}}">Home</a></div>
         <div class="nav-dropdown">
-          <div class="nav-dropdown-item"><a class="nav-link">About</a></div>
           <div class="nav-dropdown-item"><a class="nav-link">About</a></div>
           <div class="nav-dropdown-item"><a class="nav-link">Terms of Service</a></div>
           <div class="nav-dropdown-item"><a class="nav-link">Privacy Policy</a></div>
