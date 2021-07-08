@@ -13,10 +13,11 @@ body {
 }
 
 .nav-content {
-  width:100%;
+  width:80%;
   height:100%;
   display:grid;
-  grid-template-rows:12% 6% 6% 6%;
+  grid-template-rows:10% 6% 6% 66% 6%;
+  color:black;
 }
 
 .nav-content-enlarged {
@@ -28,12 +29,36 @@ body {
 }
 
 .nav-title {
-  align-self:center;
+  align-self:start;
   font-weight:lighter;
+  padding-left:20px;
 }
 
 .nav-item {
   align-self:center;
+}
+
+.nav-link {
+  font-weight:lighter;
+}
+
+.nav-item-link {
+  display:grid;
+  border-radius:20px;
+  padding-left:20px;
+  transition:background-color 0.2s;
+}
+
+.nav-item-link:hover {
+  background-color:#EEE;
+}
+
+.nav-icon {
+  margin-right:15px;
+}
+
+.nav-dropdown-wrapper {
+  grid-row:5;
 }
 
 #menu-icon {

@@ -11,4 +11,5 @@ $(function() {
       $('.nav-bar').removeClass('nav-content-enlarged');
     }
   });
+
 });
