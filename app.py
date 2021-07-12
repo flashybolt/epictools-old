@@ -14,7 +14,12 @@ def home():
 @app.route('/tools', methods=['GET', 'POST'])
 @login_required
 def tools():
-    return render_template('tools.html', title="tools | Epictools")
+    return render_template('tools.html', title="Tools | Epictools")
+
+@app.route('/workshop', methods=['GET', 'POST'])
+@login_required
+def workshop():
+    return render_template('workshop.html', title="Workshop | Epictools")
 
 @app.route('/logout')
 @login_required
