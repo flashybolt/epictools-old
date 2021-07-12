@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=0">
     <style>html{visibility: hidden;opacity:0;}</style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
@@ -16,18 +17,48 @@
     <title>{{title}}</title>
   </head>
   <body>
+    <!--
     <div class="nav-bar">
       <span uk-icon="icon: menu; ratio:1.5" id="menu-icon"></span>
       <div class="nav-content">
-        <div class="uk-heading-small nav-title"><a uk-tooltip="title: Home; pos: top-right" href="{{url_for('home')}}" class="nav-link uk-link-reset">Epictools</a></div>
+        <div class="uk-heading-small nav-title">
+          <a uk-tooltip="title: Home; pos: top-right" href="{{url_for('home')}}" class="nav-link uk-link-reset">Epictools</a>
+        </div>
         {% if not current_user.is_authenticated %}
-        <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('register')}}" uk-tooltip="title: Register; pos: left"><div class="nav-item uk-text-large"><span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>Register</div></a>
-        <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('login')}}" uk-tooltip="title: Login; pos: left"><div class="nav-item uk-text-large"><span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>Login</div></a>
+        <button class="uk-button uk-button-default" type="button">
+          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('register')}}" uk-tooltip="title: Register; pos: left">
+            <div class="nav-item uk-text-large">
+              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
+              Register
+            </div>
+          </a>
+        </button>
+        <button class="uk-button uk-button-default" type="button">
+          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('login')}}" uk-tooltip="title: Login; pos: left">
+            <div class="nav-item uk-text-large">
+              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
+              Login
+            </div>
+          </a>
+        </button>
         {% elif current_user.is_authenticated %}
-        <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('tools')}}" uk-tooltip="title: Tools; pos: left"><div class="nav-item uk-text-large"><span class="nav-icon" uk-icon="icon: code; ratio:1.5"></span>Tools</div></a>
-        <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('logout')}}" uk-tooltip="title: Logout; pos: left"><div class="nav-item uk-text-large"><span class="nav-icon" uk-icon="icon: sign-out; ratio:1.5"></span>Logout</div></a>
+        <button class="uk-button uk-button-default" type="button">
+          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('tools')}}" uk-tooltip="title: Tools; pos: left">
+            <div class="nav-item uk-text-large">
+              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
+              Tools
+            </div>
+          </a>
+        </button>
+        <button class="uk-button uk-button-default" type="button">
+          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('logout')}}" uk-tooltip="title: Logout; pos: left">
+            <div class="nav-item uk-text-large">
+              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
+              Logout
+            </div>
+          </a>
+        </button>
         {% endif %}
-        <!--
         <button class="uk-button uk-button-default" type="button">Hover</button>
         <div uk-dropdown>
             <ul class="uk-nav uk-dropdown-nav">
@@ -40,9 +71,9 @@
                 <li><a href="#">Item</a></li>
             </ul>
         </div>
-      -->
 
         <div class="nav-dropdown-wrapper">
+          <button class="uk-button uk-button-default" type="button">More</button>
           <div uk-dropdown>
             <ul class="uk-nav uk-dropdown-nav">
               <li class="nav-dropdown-item"><a class="nav-link uk-link-reset">About</a></li>
@@ -54,6 +85,30 @@
         </div>
       </div>
     </div>
+    -->
+    <nav class="uk-navbar-container" uk-navbar="mode:click">
+      <div class="uk-navbar-left">
+        <a href="{{url_for('home')}}" class="uk-navbar-item uk-logo">Epictools</a>
+        <ul class="uk-navbar-nav">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+          <li><a href="#">All Tools</a></li>
+          <li><a href="#">Workshop</a></li>
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <li>
+          <a href="#">Parent</a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><a href="#">Active</a></li>
+              <li><a href="#">Item</a></li>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+        </li>
+      </div>
+    </nav>
     <div class="content">
       {% block content %}
       {% endblock %}
