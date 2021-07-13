@@ -1,36 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="bg">
-  {% if request.path == "/register" %}
-  <div class="login-register-text">Already have an account? Login!</div>
-  <div class="login-register-button"><a href="{{url_for('login')}}" class="link">Login</a></div>
-  {% elif request.path == "/login" %}
-  <div class="login-register-text">Don't have an account? Register!</div>
-  <div class="login-register-button"><a href="{{url_for('register')}}" class="link">Register</a></div>
-  {% endif %}
-</div>
-<div class="form-wrapper">
-  <div class="form-box">
-    <h2 class="form-heading">Login</h2>
-    <form class="form" style="height:50%;" novalidate>
-      {# This hidden_tag is a CSRF security feature. #}
-      {{ form.hidden_tag() }}
-      {{ form.username(class="input", placeholder="Username", maxlength=100) }}
-      {% if form.errors %}
-        {% for error in form.username.errors %}{{ error }}{% endfor %}
-      {% else %}
-        {{form.errors}}
-      {% endif %}
-      {{ form.password(class="input", placeholder="Password", maxlength=20) }}
-      {{ form.submit(class="input submit") }}
-    </form>
-    {% for mess in get_flashed_messages() %}
-    <div class="form-flash">
-      {{mess}}
+<h2 class="uk-align-center">Login</h2>
+<form class="uk-align-center" style="height:50%;" novalidate method="POST">
+  {# This hidden_tag is a CSRF security feature. #}
+  {{ form.hidden_tag() }}
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <span class="uk-form-icon" uk-icon="icon: user"></span>
+      {{ form.username(placeholder="Username", class="uk-input uk-form-width-medium") }}
     </div>
-    {% endfor %}
   </div>
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <span class="uk-form-icon" uk-icon="icon: lock"></span>
+      {{ form.password(placeholder="Password", class="uk-input uk-form-width-medium") }}
+    </div>
+  </div>
+  <div class="uk-margin">
+    {% if form.username.errors %}
+    {% for error in form.username.errors %}
+    {{ error }}
+    {% endfor %}
+    {% endif %}
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    {{ error }}
+    {% endfor %}
+    {% endif %}
+  </div>
+  {{ form.submit(class="uk-input uk-form-width-medium") }}
+</form>
+{% for mess in get_flashed_messages() %}
+<div>
+  {{mess}}
 </div>
+  {% endfor %}
 {% endblock %}
 {% block stylesheets_and_scripts %}
 {% endblock %}

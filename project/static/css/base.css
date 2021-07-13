@@ -3,10 +3,6 @@ body {
   height:100vh;
   width:100%;
 }
-
-nav[uk-navbar] {
-  
-}
 /*
 .nav-bar {
   z-index:1;
@@ -81,8 +77,3 @@ nav[uk-navbar] {
   cursor:pointer;
 }
 */
-.content {
-  transition:margin 0.2s;
-  display:flex;
-  justify-content:center;
-}

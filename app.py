@@ -33,22 +33,23 @@ def logout():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Hello!')
         user = User.query.filter_by(username=form.username.data).first()
-        if user.check_password(form.password.data) and user is not None:
-            login_user(user)
-            flash('Logged in successfully.')
-            return redirect(url_for('tools'))
-            #next = request.args.get('next')
-            #if next == None or not next[0]=='/':
-            #    next = url_for('tools')
-            #return redirect(next)
-        elif user is None:
-            flash('User does not exist.')
-            return redirect(url_for('login'))
-        elif not user.check_password(form.password.data):
-            flash('Your password is incorrect.')
-            return redirect(url_for('login'))
+        try:
+            if user.check_password(form.password.data) and user is not None:
+                login_user(user)
+                flash('Logged in successfully.')
+                return redirect(url_for('tools'))
+                #next = request.args.get('next')
+                #if next == None or not next[0]=='/':
+                #    next = url_for('tools')
+                #return redirect(next)
+        except AttributeError:
+            if user is None:
+                flash('User does not exist.')
+                return redirect(url_for('login'))
+            elif not user.check_password(form.password.data):
+                flash('Your password is incorrect.')
+                return redirect(url_for('login'))
     return render_template('login.html', title="Login", form=form)
 
 @app.route('/register', methods=['GET', 'POST'])

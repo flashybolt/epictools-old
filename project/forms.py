@@ -8,7 +8,7 @@ def testingboi(form, field):
         raise ValidationError('Must be 42')
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(message="Username is required."), testingboi])
+    username = StringField('Username', validators=[DataRequired(message="Username is required.")])
     password = PasswordField('Password', validators=[DataRequired(message="Password is required.")])
     submit = SubmitField('Login')
 
