@@ -21,3 +21,5 @@ Migrate(app,db)
 login_manager.init_app(app)
 
 login_manager.login_view = "login"
+login_manager.login_message = u"Please login to access the page you were going to. You will be redirected to that page once logged in."
+login_manager.login_message_category = "modal"

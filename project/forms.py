@@ -13,10 +13,10 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegistrationForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(),Email()])
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), EqualTo('pass_confirm', message='Passwords Must Match!')])
-    pass_confirm = PasswordField('Confirm password', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(message='Email is required.'),Email(message='Enter a valid email.')])
+    username = StringField('Username', validators=[DataRequired(message='Username is required.')])
+    password = PasswordField('Password', validators=[DataRequired(message='Password is required.'), EqualTo('pass_confirm', message='Passwords must match.')])
+    pass_confirm = PasswordField('Confirm password', validators=[DataRequired(message='Please enter a confirm password.')])
     submit = SubmitField('Register')
 '''
     def check_email(self, field):

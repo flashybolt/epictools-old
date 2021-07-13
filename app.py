@@ -39,15 +39,15 @@ def login():
                 login_user(user)
                 flash('Logged in successfully.')
                 return redirect(url_for('tools'))
-                #next = request.args.get('next')
-                #if next == None or not next[0]=='/':
-                #    next = url_for('tools')
-                #return redirect(next)
+                next = request.args.get('next')
+                if next == None or not next[0]=='/':
+                    next = url_for('home')
+                return redirect(next)
         except AttributeError:
             if user is None:
                 flash('User does not exist.')
                 return redirect(url_for('login'))
-            elif not user.check_password(form.password.data):
+            else:
                 flash('Your password is incorrect.')
                 return redirect(url_for('login'))
     return render_template('login.html', title="Login", form=form)
@@ -60,16 +60,10 @@ def register():
         user = User(email=form.email.data,
                     username=form.username.data,
                     password=form.password.data)
-        usernameexists = User.query.filter_by(username=user.username).first() is not None
-        emailexists = User.query.filter_by(email=user.email).first() is not None
-
-        if usernameexists or emailexists:
-            flash('Username or email has already been registered.')
-        else:
-            db.session.add(user)
-            db.session.commit()
-            flash('Thanks for registering! Now you can login!')
-            return redirect(url_for('login'))
+        db.session.add(user)
+        db.session.commit()
+        flash('Thanks for registering! Now you can login!')
+        return redirect(url_for('login'))
     return render_template('register.html', title="Register", form=form)
 
 if __name__ == '__main__':
