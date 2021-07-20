@@ -1,123 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=0">
-    <style>html{visibility: hidden;opacity:0;}</style>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/spinner.css')}}">
+    <script>
+      function preloader() {
+          document.getElementsByClassName("background")[0].style.display = "none";
+          document.getElementsByClassName("page-wrapper")[0].style.display = "block";
+      }
+      window.onload = preloader;
+    </script>
+    <div class="background uk-overflow-hidden">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/fouc.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    <meta charset="utf-8">
     {% block stylesheets_and_scripts %}
     {% endblock %}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/fouc.css')}}">
-    <meta charset="utf-8">
-    <title>{{title}}</title>
     {% block head %}
     {% endblock %}
   </head>
-  <body>
-    <!--
-    <div class="nav-bar">
-      <span uk-icon="icon: menu; ratio:1.5" id="menu-icon"></span>
-      <div class="nav-content">
-        <div class="uk-heading-small nav-title">
-          <a uk-tooltip="title: Home; pos: top-right" href="{{url_for('home')}}" class="nav-link uk-link-reset">Epictools</a>
+  <body class="uk-overflow-hidden">
+    <div class="page-wrapper" style="display:none;">
+      <nav class="uk-navbar-container" uk-navbar="mode:click">
+        <div class="uk-navbar-left">
+          <a href="{{url_for('home')}}" class="uk-navbar-item uk-logo uk-margin-small-left">Epictools</a>
+          <ul class="uk-navbar-nav">
+            <li><a href="{{url_for('login')}}">Login</a></li>
+            <li><a href="{{url_for('register')}}">Register</a></li>
+            <li><a href="{{url_for('tools')}}">All Tools</a></li>
+            <li><a href="{{url_for('workshop')}}">Workshop</a></li>
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
+          </ul>
         </div>
-        {% if not current_user.is_authenticated %}
-        <button class="uk-button uk-button-default" type="button">
-          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('register')}}" uk-tooltip="title: Register; pos: left">
-            <div class="nav-item uk-text-large">
-              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
-              Register
-            </div>
-          </a>
-        </button>
-        <button class="uk-button uk-button-default" type="button">
-          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('login')}}" uk-tooltip="title: Login; pos: left">
-            <div class="nav-item uk-text-large">
-              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
-              Login
-            </div>
-          </a>
-        </button>
-        {% elif current_user.is_authenticated %}
-        <button class="uk-button uk-button-default" type="button">
-          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('tools')}}" uk-tooltip="title: Tools; pos: left">
-            <div class="nav-item uk-text-large">
-              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
-              Tools
-            </div>
-          </a>
-        </button>
-        <button class="uk-button uk-button-default" type="button">
-          <a class="nav-link nav-item-link uk-link-reset" href="{{url_for('logout')}}" uk-tooltip="title: Logout; pos: left">
-            <div class="nav-item uk-text-large">
-              <span class="nav-icon" uk-icon="icon: sign-in; ratio:1.5"></span>
-              Logout
-            </div>
-          </a>
-        </button>
-        {% endif %}
-        <button class="uk-button uk-button-default" type="button">Hover</button>
-        <div uk-dropdown>
-            <ul class="uk-nav uk-dropdown-nav">
-                <li class="uk-active"><a href="#">Active</a></li>
-                <li><a href="#">Item</a></li>
-                <li class="uk-nav-header">Header</li>
-                <li><a href="#">Item</a></li>
-                <li><a href="#">Item</a></li>
-                <li class="uk-nav-divider"></li>
-                <li><a href="#">Item</a></li>
-            </ul>
+        <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav">
+            <li>
+              <a href="#"><span uk-icon="icon:more-vertical;ratio:1.5" class="uk-margin-small-right"></span></a>
+              <div class="uk-navbar-dropdown" uk-dropdown="pos:bottom-left">
+                <ul class="uk-nav uk-navbar-dropdown-nav">
+                  <li><a href="#">Terms of Use</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Credits</a></li>
+                  <li><a href="#">About</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </div>
-
-        <div class="nav-dropdown-wrapper">
-          <button class="uk-button uk-button-default" type="button">More</button>
-          <div uk-dropdown>
-            <ul class="uk-nav uk-dropdown-nav">
-              <li class="nav-dropdown-item"><a class="nav-link uk-link-reset">About</a></li>
-              <li class="nav-dropdown-item"><a class="nav-link uk-link-reset">Terms of Service</a></li>
-              <li class="nav-dropdown-item"><a class="nav-link uk-link-reset">Privacy Policy</a></li>
-              <li class="nav-dropdown-item"><a class="nav-link uk-link-reset">Credits</a></li>
-            </ul>
-          </div>
-        </div>
+      </nav>
+      <div class="uk-padding-large">
+        {% block content %}
+        {% endblock %}
       </div>
-    </div>
-    -->
-    <nav class="uk-navbar-container" uk-navbar="mode:click">
-      <div class="uk-navbar-left">
-        <a href="{{url_for('home')}}" class="uk-navbar-item uk-logo uk-margin-small-left">Epictools</a>
-        <ul class="uk-navbar-nav">
-          <li><a href="{{url_for('login')}}">Login</a></li>
-          <li><a href="{{url_for('register')}}">Register</a></li>
-          <li><a href="{{url_for('tools')}}">All Tools</a></li>
-          <li><a href="{{url_for('workshop')}}">Workshop</a></li>
-          <li><a href="{{url_for('logout')}}">Logout</a></li>
-        </ul>
-      </div>
-      <div class="uk-navbar-right">
-        <ul class="uk-navbar-nav">
-          <li>
-            <a href="#"><span uk-icon="icon:more-vertical;ratio:1.5" class="uk-margin-small-right"></span></a>
-            <div class="uk-navbar-dropdown" uk-dropdown="pos:bottom-left">
-              <ul class="uk-nav uk-navbar-dropdown-nav">
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Credits</a></li>
-                <li><a href="#">About</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="uk-padding-large">
-      {% block content %}
-      {% endblock %}
     </div>
   </body>
 </html>

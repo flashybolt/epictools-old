@@ -25,7 +25,7 @@ def workshop():
 @login_required
 def logout():
     logout_user()
-    flash('You logged out!')
+    flash('You logged out!', 'modal')
     return redirect(url_for('home'))
 
 
@@ -37,7 +37,7 @@ def login():
         try:
             if user.check_password(form.password.data) and user is not None:
                 login_user(user)
-                flash('Logged in successfully.')
+                flash('Logged in successfully.', 'modal')
                 return redirect(url_for('tools'))
                 next = request.args.get('next')
                 if next == None or not next[0]=='/':
@@ -62,7 +62,7 @@ def register():
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Thanks for registering! Now you can login!')
+        flash('Thanks for registering! Now you can login!', 'modal')
         return redirect(url_for('login'))
     return render_template('register.html', title="Register", form=form)
 

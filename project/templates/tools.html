@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+{% for mess in get_flashed_messages(category_filter=["modal"]) %}
+<div id="modal-close-default" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <h2 class="uk-modal-title uk-margin-small-bottom">{{mess}}</h2>
+    {{ mess }}
+  </div>
+</div>
+{% endfor %}
 <h1>Tools Page</h1>
 <h2>You are {{current_user.username}}</h2>
 <a href="{{ url_for('home') }}">Back</a>
