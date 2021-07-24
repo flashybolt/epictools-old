@@ -11,8 +11,12 @@
 
 .background {
   width:100vw;
-  height:100vw;
+  height:100vh;
   background-color:#f8f8f8;
+  overflow:hidden;
+}
+
+body {
   overflow:hidden;
 }
 

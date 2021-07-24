@@ -36,24 +36,33 @@
           {{ error }}
           {% endfor %}
           {% endif %}
+        </div>
+        <div class="uk-margin">
           {% if form.username.errors %}
           {% for error in form.username.errors %}
           {{ error }}
           {% endfor %}
           {% endif %}
+        </div>
+        <div class="uk-margin">
           {% if form.password.errors %}
           {% for error in form.password.errors %}
           {{ error }}
           {% endfor %}
           {% endif %}
+        </div>
+        <div class="uk-margin">
           {% if form.pass_confirm.errors %}
           {% for error in form.pass_confirm.errors %}
           {{ error }}
           {% endfor %}
           {% endif %}
+        </div>
+        <div class="uk-margin">
           {% for mess in get_flashed_messages() %}
           {{ mess }}
           {% endfor %}
+        </div>
         </div>
         <div class="uk-margin">
           <div class="uk-inline">
