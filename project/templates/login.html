@@ -31,7 +31,9 @@
     {% endif %}
   </div>
   <div class="uk-margin">
-
+    {% for mess in get_flashed_messages(category_filter=["form"]) %}
+    {{mess}}
+    {% endfor %}
   </div>
   {{ form.submit(class="uk-input uk-form-width-medium") }}
 </form>

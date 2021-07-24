@@ -38,17 +38,16 @@ def login():
             if user.check_password(form.password.data) and user is not None:
                 login_user(user)
                 flash('Logged in successfully.', 'modal')
-                return redirect(url_for('tools'))
                 next = request.args.get('next')
                 if next == None or not next[0]=='/':
                     next = url_for('home')
                 return redirect(next)
+            elif not user.check_password(form.password.data):
+                flash('Your password is incorrect.', 'form')
+                return redirect(url_for('login'))
         except AttributeError:
             if user is None:
-                flash('User does not exist.')
-                return redirect(url_for('login'))
-            else:
-                flash('Your password is incorrect.')
+                flash('User does not exist.', 'form')
                 return redirect(url_for('login'))
     return render_template('login.html', title="Login", form=form)
 
