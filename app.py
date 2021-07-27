@@ -4,6 +4,7 @@ from flask_login import login_user,login_required,logout_user
 from project.models import User
 from project.forms import LoginForm, RegistrationForm
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.exceptions import NotFound, Forbidden, Unauthorized
 
 
 @app.route('/')
@@ -64,6 +65,10 @@ def register():
         flash('Thanks for registering! Now you can login!', 'modal')
         return redirect(url_for('login'))
     return render_template('register.html', title="Register", form=form)
+
+@app.errorhandler(NotFound)
+def notfound(e):
+    return render_template('notfound.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
