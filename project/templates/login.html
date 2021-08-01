@@ -16,25 +16,26 @@
       {{ form.password(placeholder="Password", class="uk-input uk-form-width-medium") }}
     </div>
   </div>
-  <div class="uk-margin">
     {% if form.username.errors %}
     {% for error in form.username.errors %}
-    {{ error }}
+    <script>
+      validateStyler('{{error}}', 'text', 'username', 'Username');
+    </script>
     {% endfor %}
     {% endif %}
-  </div>
-  <div class="uk-margin">
     {% if form.password.errors %}
     {% for error in form.password.errors %}
-    {{ error }}
+    <script>
+      validateStyler('{{error}}', 'password', 'password', 'Password');
+    </script>
     {% endfor %}
     {% endif %}
-  </div>
-  <div class="uk-margin">
     {% for mess in get_flashed_messages(category_filter=["form"]) %}
-    {{mess}}
+      <script>
+      validateStyler('{{mess}}', 'password', 'password', 'Password')
+      validateStyler('{{mess}}', 'text', 'username', 'Username')
+      </script>
     {% endfor %}
-  </div>
   {{ form.submit(class="uk-input uk-form-width-medium") }}
 </form>
 {% for mess in get_flashed_messages(category_filter=["modal"]) %}
@@ -46,9 +47,9 @@
 </div>
 {% endfor %}
 {% endblock %}
-{% block stylesheets_and_scripts %}
-<script src="{{url_for('static', filename='js/modal.js')}}"></script>
-{% endblock %}
 {% block head %}
+<script src="{{url_for('static', filename='js/validators.js')}}" charset="utf-8"></script>
+<script src="{{url_for('static', filename='js/modal.js')}}"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='css/placeholder.css')}}">
 <button style="display:none;" class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-close-default" id="modal-button">Default</button>
 {% endblock %}

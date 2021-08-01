@@ -1,0 +1,12 @@
+::placeholder {
+  color:red;
+  opacity:1;
+}
+
+:-ms-input-placeholder {
+  color:red;
+}
+
+::-ms-input-placeholder {
+  color:red;
+}
